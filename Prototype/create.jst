@@ -1,0 +1,16 @@
+import { Buffer } from 'node:buffer';
+
+// Create a `Buffer` and copy data from one region to an overlapping region
+// within the same `Buffer`.
+
+const buf = Buffer.allocUnsafe(26);
+
+for (let i = 0; i < 26; i++) {
+  // 97 is the decimal ASCII value for 'a'.
+  buf[i] = i + 97;
+}
+
+buf.copy(buf, 0, 4, 10);
+
+console.log(buf.toString());
+// Prints: efghijghijklmnopqrstuvwxyz
